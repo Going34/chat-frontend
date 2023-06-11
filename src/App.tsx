@@ -1,14 +1,13 @@
 import { Box } from "@mui/material";
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { styled } from "styled-components";
 import "./App.css";
 import HomePage from "./page/home-page";
 import Login from "./page/login";
 import { AutoLogin } from "./store/auth/action";
 import { selectAuth } from "./store/auth/reducer";
-import { CloudinaryContext, Image, Transformation } from "cloudinary-react";
 
 const Wrapper = styled(Box)`
   background-image: url("https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1nfGVufDB8fDB8fHww&w=1000&q=80");
@@ -26,10 +25,10 @@ function App() {
   useLayoutEffect(() => {
     const token = localStorage.getItem("chatToken");
     if (token) dispatch(AutoLogin.request());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <CloudinaryContext>
       <Wrapper>
         <BrowserRouter>
           <Routes>
@@ -44,7 +43,6 @@ function App() {
           </Routes>
         </BrowserRouter>
       </Wrapper>
-    </CloudinaryContext>
   );
 }
 

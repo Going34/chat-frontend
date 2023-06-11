@@ -2,7 +2,6 @@ import { Box, Button } from "@mui/material";
 import { Field, Form } from "formik";
 import { Error, InputField, Label } from "../page/login";
 import { Flex } from "../style/common";
-import axios from "axios";
 
 
 const SignupForm = (props: {

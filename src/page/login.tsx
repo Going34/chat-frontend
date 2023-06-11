@@ -1,23 +1,21 @@
-import { Box, Button } from "@mui/material";
-import styled from "styled-components";
+import { Box } from "@mui/material";
 import {
-  Formik,
-  Field,
   ErrorMessage,
-  FormikProps,
+  Field,
+  Formik,
   FormikHelpers,
-  Form,
+  FormikProps
 } from "formik";
-import { Flex } from "../style/common";
 import { useEffect, useState } from "react";
-import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { LoginAction, RegisterAction } from "../store/auth/action";
-import { selectAuth } from "../store/auth/reducer";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import * as Yup from "yup";
 import LoginForm from "../components/login-form";
 import SignupForm from "../components/signup-form";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { LoginAction, RegisterAction } from "../store/auth/action";
+import { selectAuth } from "../store/auth/reducer";
+import { Flex } from "../style/common";
 
 export const LoginWrapper = styled(Box)`
   display: flex;
@@ -123,6 +121,7 @@ const Login = () => {
   const initialValues: FormValues = {
     email: "",
     password: "",
+    file: ""
   };
 
   const user = useSelector(selectAuth);
@@ -139,6 +138,7 @@ const Login = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = async (
     values: FormValues,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _formikHelpers: FormikHelpers<FormValues>
   ) => {
     console.log(values);

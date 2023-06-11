@@ -23,6 +23,8 @@ interface Chat {
   createdAt: string;
   updatedAt: string;
   deleteBy: string[];
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   latestMessage?: LatestMessage | undefined;
 }
 
@@ -56,6 +58,8 @@ interface Chat {
   _id: string;
   chatName: string;
   isGroupChat: boolean;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   users: {
     participants: string;
     timestamps: string;
@@ -64,6 +68,8 @@ interface Chat {
   deleteBy: string[];
   createdAt: string;
   updatedAt: string;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   latestMessage: string;
 }
 

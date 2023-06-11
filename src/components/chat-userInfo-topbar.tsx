@@ -1,7 +1,7 @@
 import { Avatar, Box } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import { LogOutAction } from "../store/auth/action";
 import { selectAuth } from "../store/auth/reducer";

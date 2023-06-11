@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Button, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
@@ -14,13 +15,13 @@ import { selectAuth } from "../store/auth/reducer";
 import { FetchAllActionChat } from "../store/chat/action";
 import { GetMessageAction, MessageSendAction } from "../store/message/action";
 import { selectMessage, selectSendMessage } from "../store/message/reducer";
+import { NotificationGetAction } from "../store/notification/action";
+import { selectNotification } from "../store/notification/reducer";
 import { Flex } from "../style/common";
 import DubbleTick from "../svg/dubble-tick";
 import SingleTick from "../svg/single-tick";
 import ChatTopBar from "./chat-userInfo-topbar";
 import animationData from "./data.json";
-import { NotificationGetAction } from "../store/notification/action";
-import { selectNotification } from "../store/notification/reducer";
 
 const ChatArea = styled(Box)`
   background-color: #f0eeee;
@@ -141,6 +142,7 @@ function convertTimestampToTime(timestamp: string) {
 function getDayFromTimestamp(timestamp: string) {
   const date = new Date(timestamp);
   const options = { weekday: "long" };
+  // @ts-ignore
   return date.toLocaleDateString("en-US", options);
 }
 interface IChatArea {
@@ -166,7 +168,10 @@ const MessageDisplay = (props: IChatArea) => {
   const { selectChat, chatId, socket, selectedChatCompare, setSelectedChat } =
     props;
   const chatContainerRef = useRef<HTMLDivElement>();
-  const [getMessage, setGetMessage] = useState<Message>({});
+  const [getMessage, setGetMessage] = useState<Message>({ messages: [],
+    page:  0,
+    totalPages:  0,
+    loading: false});
   const [messgeText, setMessageText] = useState("");
   const [socketConnected, setSocketConnected] = useState(false);
   const [typing, setTyping] = useState(false);
@@ -231,6 +236,8 @@ const MessageDisplay = (props: IChatArea) => {
   };
 
   useEffect(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
     setGetMessage((pre) => ({
       ...pre,
       messages: [...pre.messages, sendMessage],
@@ -242,13 +249,15 @@ const MessageDisplay = (props: IChatArea) => {
     }
   }, [sendMessage]);
 
-  useEffect(() => {
-    if (getMessage.messages)
-      console.log(
-        getMessage.messages[getMessage.messages.length - 1],
-        "update1"
-      );
-  }, [getMessage]);
+  // useEffect(() => {
+  //     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // // @ts-ignore
+  //   if (getMessage.messages)
+  //     console.log(
+  //       getMessage.messages[getMessage.messages.length - 1],
+  //       "update1"
+  //     );
+  // }, [getMessage]);
 
   useEffect(() => {
     let flag = true;
@@ -335,6 +344,7 @@ const MessageDisplay = (props: IChatArea) => {
     // eslint-disable-next-line
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const typingHandler = (e: any) => {
     setMessageText(e.target.value);
 
