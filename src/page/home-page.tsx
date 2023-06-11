@@ -139,11 +139,12 @@ export const Input = styled("input")`
   padding: 0px 8px;
 `;
 
-const ENDPOINT = "https://chat-backend-ge69.onrender.com";
+const ENDPOINT = "https://chat-backend-ge69.onrender.com:8000";
 let socket: Socket<DefaultEventsMap, DefaultEventsMap>,
   selectedChatCompare: string;
 
 const HomePage = () => {
+  
   const [searchUser, setSearchUser] = useState("");
   const [selectTab, setSelectTab] = useState("chat");
   const [selectChat, setSelectChat] = useState(false);
