@@ -15,19 +15,17 @@ function* createUser(parms: ActionType<typeof RegisterAction.request>) {
 
     const data: { data: IUser } = yield axios.post(
       "https://chat-backend-ge69.onrender.com/user/register",
-      { ...parms.payload, phoneNumber:parms.payload.phoneNumber },
+      { ...parms.payload, phoneNumber: parms.payload.phoneNumber },
       config
     );
-      if(data.data.token)
-    localStorage.setItem("chatToken", data.data.token);
-
+    if (data.data.token) localStorage.setItem("chatToken", data.data.token);
     yield put(LoginAction.success(data.data));
+    location.reload()
     return;
   } catch (error) {
     console.log("first");
   }
 }
-
 
 function* loginUser(parms: ActionType<typeof LoginAction.request>) {
   try {
@@ -42,8 +40,7 @@ function* loginUser(parms: ActionType<typeof LoginAction.request>) {
       { ...parms.payload },
       config
     );
-      if(data.data.token)
-    localStorage.setItem("chatToken", data.data.token);
+    if (data.data.token) localStorage.setItem("chatToken", data.data.token);
 
     yield put(LoginAction.success(data.data));
     return;
@@ -82,7 +79,7 @@ function* authSaga() {
   yield all([
     takeLatest(getType(LoginAction.request), loginUser),
     takeLatest(getType(AutoLogin.request), autoLoginUser),
-    takeLatest(getType(RegisterAction.request),createUser)
+    takeLatest(getType(RegisterAction.request), createUser),
   ]);
 }
 

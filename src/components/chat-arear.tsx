@@ -488,8 +488,8 @@ const MessageDisplay = (props: IChatArea) => {
                 )}
                 <Box ref={chatContainerRef} />
                 {istyping && (
-                  <Box marginBottom={1}>
-                    {" "}
+                  <Box marginBottom={1} position='absolute' >
+
                     <Lottie
                       options={defaultOptions}
                       width={70}
