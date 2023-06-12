@@ -105,6 +105,7 @@ const CustomButton = styled("button")`
   padding: 8px 12px;
   border-radius: 8px;
   border: none;
+  cursor: pointer;
   background-color: #e2f1f0;
 `;
 
@@ -124,6 +125,7 @@ const Tab = styled(Flex)<{ isChatTabSelected: boolean }>`
   width: 100%;
   padding: 5px 10px;
   justify-content: center;
+  cursor: pointer;
   border-radius: 8px;
   transition: 0.3s;
   background-color: ${(props) => props.isChatTabSelected && "#f4f4fa"};

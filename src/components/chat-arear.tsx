@@ -192,6 +192,7 @@ const MessageDisplay = (props: IChatArea) => {
         chatId,
       });
     }
+    dispatch(FetchAllActionChat.request({token:auth.token}))
   }, [backendNotification]);
 
   useEffect(() => {
